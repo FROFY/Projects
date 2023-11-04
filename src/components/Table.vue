@@ -19,7 +19,7 @@
                   <td>
                       <div class="icons">
                           <img 
-                            @click="more(item.id)" src="../../public/open.svg" alt="open"
+                            src="../../public/open.svg" alt="open"
                           >
                           <img 
                             @click="edit(item)" src="../../public/edit.svg" alt="edit"
@@ -67,9 +67,9 @@ export default {
     projects: Object
   },
   methods: {
-    more(id) {
-      console.log(id);
-    },
+    // more(id) {
+    //   console.log(id);
+    // },
     edit(item) {
       console.log(item);
       this.selectedItem = item;

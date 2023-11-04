@@ -15,7 +15,7 @@
                   <td>{{ item.id }}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.age }}</td>
-                  <td>{{ new Date() }}</td>
+                  <td>{{ new Date().toLocaleDateString() }}</td>
                   <td>
                       <div class="icons">
                           <img 
@@ -25,7 +25,7 @@
                             @click="edit(item)" src="../../public/edit.svg" alt="edit"
                           >
                           <img 
-                            @click="more(item.id)" src="../../public/delete.svg" alt="delete"
+                            @click="deleteRow(item.id)" src="../../public/delete.svg" alt="delete"
                           >
                       </div>
                   </td>
@@ -37,21 +37,31 @@
         :editedProject="selectedItem"
         @close="showModal = false"
       />
+      <yes-or-no 
+        :showModal="showDelete"
+        :row_id="wantToDelete"
+        @close="showDelete = false"
+      />
   </div>
 </template>
 
 <script>
 import ProjectDialog from './ProjectDialog.vue';
+import YesOrNo from './YesOrNo.vue';
+
 export default {
   name: 'MainPage',
   data() {
     return {
       showModal: false,
+      showDelete: false,
+      wantToDelete: 0,
       selectedItem: [],
     }
   },
   components: {
-    'project-dialog': ProjectDialog
+    'project-dialog': ProjectDialog,
+    'yes-or-no': YesOrNo,
   },
   props: {
     projects: Object
@@ -64,7 +74,11 @@ export default {
       console.log(item);
       this.selectedItem = item;
       this.showModal = true;
-    }
+    },
+    deleteRow(row_id) {
+      this.wantToDelete = row_id;
+      this.showDelete = true;
+    },
   }
 }
 </script>

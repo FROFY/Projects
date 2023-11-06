@@ -41,12 +41,12 @@
         <button>press</button>
       </div>
       <project-dialog 
-        :showModal="showModal"
-        :editedProject="selectedItem"
+        :show-modal="showModal"
+        :edited-project="selectedItem"
         @close="showModal = false"
       />
       <yes-or-no 
-        :showModal="showDelete"
+        :show-modal="showDelete"
         :row_id="wantToDelete"
         @close="showDelete = false"
         @delete="deleteRow"

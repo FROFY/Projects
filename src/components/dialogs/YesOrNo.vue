@@ -3,24 +3,10 @@
     <div v-if="showModal" class="modal-mask">
       <div class="modal-container">
         <div>
-          <h4>Редактировать</h4>
-        </div>
-        <div class="model-body">
-          <div class="headers">
-            <span>ID: </span>
-            <span>Название:</span>
-            <span>Цена:</span>
-            <span>Дата:</span>
-          </div>
-          <div>
-            <input v-model="newProject.id">
-            <input v-model="newProject.name">
-            <input v-model="newProject.age">
-            <input placeholder="Дата...">
-          </div>
+          <h4>Вы действительно хотите удалить запись?</h4>
         </div>
         <div class="buttons">
-          <span>Сохранить</span>
+          <span @click="deleteRow">Удалить</span>
           <span @click="$emit('close')">Отменить</span>
         </div>
       </div>
@@ -32,16 +18,19 @@
 export default {
   data() {
     return {
-      newProject: []
+
     }
   },
   props: {
     showModal: Boolean,
-    editedProject: Object,
+    row_id: Number,
   },
-  beforeUpdate() {
-    this.newProject = Object.assign({}, this.editedProject);
-  },
+  methods: {
+    deleteRow() {
+      console.log(this.row_id);
+      this.$emit('delete');
+    }
+  }
 }
 </script>
 
@@ -84,7 +73,7 @@ $colorCancel: rgb(255, 0, 0);
       background-color: $colorCancel;
     }
 
-    &:hover {
+    &:hover::after {
       opacity: 0.7;
     }
   }

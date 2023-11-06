@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ProjectDialog from '@/components/ProjectDialog.vue';
+import ProjectDialog from '@/components/dialogs/ProjectDialog.vue';
 export default {
   components: {
     'project-page': ProjectDialog
